@@ -1,0 +1,12 @@
+* {
+  font-family: 'Jost*';
+  color: #34485c;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+}
+
+a,
+button {
+  cursor: pointer;
+}
