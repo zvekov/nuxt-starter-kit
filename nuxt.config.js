@@ -134,29 +134,38 @@ export default {
       },
     },
     filenames: {
-      chunk: ({ isDev }) =>
-        isDev ? '[name].js' : 'js/[name].[contenthash].js',
-      app: ({ isDev }) => (isDev ? '[name].js' : 'js/[name].[contenthash].js'),
-      css: ({ isDev }) =>
-        isDev ? '[name].css' : 'css/[name].[contenthash].css',
+      chunk: ({ isDev }) => (isDev ? '[name].js' : '[name].[contenthash].js'),
+      app: ({ isDev }) => (isDev ? '[name].js' : '[name].[contenthash].js'),
+      css: ({ isDev }) => (isDev ? '[name].css' : '[name].[contenthash].css'),
     },
   },
   // Add render rules
   render: {
     bundleRenderer: {
-      shouldPreload: (file, type) => {
-        if (type === 'font') {
-          return /.woff2/.test(file)
-        }
-        return ['script', 'style'].includes(type)
-      },
+      shouldPrefetch: (file, type) =>
+        ['script', 'style', 'font'].includes(type) && !file.includes('admin'),
+    },
+    http2: {
+      push: true,
+      pushAssets: (req, res, publicPath, preloadFiles) =>
+        preloadFiles.map(
+          (f) => `<${publicPath}${f.file}>; rel=preload; as=${f.asType}`
+        ),
+    },
+    compressor: false,
+    resourceHints: false,
+    etag: true,
+    static: {
+      etag: true,
     },
   },
   // Config for Webfont Loader
   webfontloader: {
+    events: false,
     google: {
       families: ['Jost:300,700&display=swap'],
     },
+    timeout: 5000,
   },
   // Config for Google Tag Manager
   gtm: {
