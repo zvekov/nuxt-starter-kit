@@ -5,7 +5,14 @@
  ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
  */
 module.exports = {
-  theme: {},
+  theme: {
+    fontFamily: {
+      body: ['"Jost", sans-serif'],
+      monospace: [
+        'SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
+      ],
+    },
+  },
   variants: {},
   plugins: [],
   purge: {

@@ -1,12 +1,19 @@
-* {
-  font-family: 'Jost*';
+a,
+button {
+  cursor: pointer;
+}
+body {
+  @apply font-body;
   color: #34485c;
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
 }
-
-a,
-button {
-  cursor: pointer;
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity 0.1s;
+}
+.layout-enter,
+.layout-leave-active {
+  opacity: 0;
 }

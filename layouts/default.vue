@@ -1,15 +1,15 @@
 <template>
   <div>
-    <Navigation />
+    <Header />
     <nuxt />
   </div>
 </template>
 
 <script>
-import Navigation from '~/components/molecules/Navigation'
+import Header from '~/components/organisms/Header'
 export default {
   components: {
-    Navigation,
+    Header,
   },
 }
 </script>
